@@ -20,23 +20,17 @@
       Error fetching GIFs.
       <div>Try again later :(</div>
     </div>
-    
+
     <div
       v-else
       class="masonry-grid__empty">
       {{ emptyMessage }}
-      <div>Try searching for
-        <router-link :to="{ name: 'search-results', params: { searchTerm: 'pusheen' }}">pusheen</router-link> or
-        <router-link :to="{ name: 'search-results', params: { searchTerm: 'gladiator' }}">gladiator</router-link>.
-      </div>
     </div>
-
-    <canvas class="fireworks"></canvas>
   </div>
 </template>
 
 <script>
-import MasonryGridCell from './MasonryGridCell.vue'
+import MasonryGridCell from './GridCell.vue'
 
 export default {
   name: 'masonry-grid',
@@ -53,7 +47,7 @@ export default {
 
   computed: {
     emptyMessage () {
-      return this.searchTerm ? `No results for '${this.searchTerm}.'` : `No favorites! Let's add your first one.`
+      return this.searchTerm ? `No results for '${this.searchTerm}.'` : `No data, add something in search string`
     }
   },
 

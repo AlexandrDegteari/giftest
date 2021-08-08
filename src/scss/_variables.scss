@@ -50,7 +50,7 @@ $palettes: (
 
 // Screen Sizes
 $screens: (
-    small: 320px,    
+    small: 320px,
     medium: 544px,
     large: 775px,
     x-large: 1280px
@@ -62,3 +62,4 @@ $sans-serif: 'Avenir', 'Lato', sans-serif;
 // Misc
 $border-radius: 3px;
 $transition: .25s ease-in-out;
+@import "~vue-sliding-pagination/dist/style/vue-sliding-pagination.css";

@@ -2,7 +2,6 @@
   <div
     id="search"
     class="search"
-    v-click-outside="clickOutside"
     :class="{active: isActive}"
     @click="onClick">
     <input
@@ -20,7 +19,6 @@
 </template>
 
 <script>
-import {mapMutations } from 'vuex'
 
 export default {
   name: 'search',
@@ -35,10 +33,6 @@ export default {
   ],
 
   methods: {
-    ...mapMutations([
-      'SET_QUERY'
-    ]),
-
     onFocus () {
       this.isActive = true
       this.$emit('onFocus')

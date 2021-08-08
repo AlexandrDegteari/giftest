@@ -10,10 +10,7 @@ function fetch (endpoint) {
 }
 
 export default {
-	search (searchTerm, limit = 20) {
-	  return fetch(`/gifs/search?q=${searchTerm}&limit=${limit}&api_key=${ENV.giphy.apiKey}`)
-	},
-	getGifById (gifId) {
-	  return fetch(`/gifs/${gifId}?api_key=${ENV.giphy.apiKey}`)
+	search (options) {
+	  return fetch(`/gifs/search?q=${options.searchTerm}&limit=${options.limit}&offset=${options.offset}&api_key=${ENV.giphy.apiKey}`)
 	}
 }

@@ -1,14 +1,17 @@
 <template>
   <div
-    id="home"
-    class="home">
+      id="home"
+      class="home">
+    <!--      @onChange="setTimeout(() => { onSearch }, 300);"-->
+
     <search
-      v-model="searchTerm"
-      :searchTerm="searchTerm"
-      :focusSearch="true"
-      @onSearch="onSearch"
-      @onFocus="onFocus"
-      @onBlur="onBlur">
+        v-model="searchTerm"
+        :searchTerm="searchTerm"
+        :focusSearch="true"
+        @input="onInput"
+        @onSearch="onSearch"
+        @onFocus="onFocus"
+        @onBlur="onBlur">
     </search>
   </div>
 </template>
@@ -29,18 +32,21 @@ export default {
   },
 
   methods: {
-    onSearch () {
+    onInput() {
+      setTimeout(this.onSearch, 300)
+    },
+    onSearch() {
       if (this.searchTerm.length > 0) {
         const searchTerm = this.searchTerm.replace(/\s/g, '+')
-        this.$router.push({ name: 'search-results', params: { searchTerm: searchTerm }})
+        this.$router.push({name: 'search-results', params: {searchTerm: searchTerm}})
       }
     },
 
-    onFocus () {
+    onFocus() {
       this.searchActive = true
     },
 
-    onBlur () {
+    onBlur() {
       this.searchActive = false
     }
   },
@@ -115,7 +121,9 @@ export default {
     @media screen and (max-width: screen(medium)) {
       height: 55px;
 
-      &__input { font-size: 1.1rem; }
+      &__input {
+        font-size: 1.1rem;
+      }
     }
 
     @media screen and (max-width: screen(small)) {
@@ -124,7 +132,9 @@ export default {
       height: 45px;
       margin-bottom: 1rem;
 
-      &__input { font-size: 1.025rem; }
+      &__input {
+        font-size: 1.025rem;
+      }
     }
   }
 
