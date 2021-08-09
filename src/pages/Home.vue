@@ -8,7 +8,6 @@
         v-model="searchTerm"
         :searchTerm="searchTerm"
         :focusSearch="true"
-        @input="onInput"
         @onSearch="onSearch"
         @onFocus="onFocus"
         @onBlur="onBlur">
@@ -32,9 +31,6 @@ export default {
   },
 
   methods: {
-    onInput() {
-      setTimeout(this.onSearch, 300)
-    },
     onSearch() {
       if (this.searchTerm.length > 0) {
         const searchTerm = this.searchTerm.replace(/\s/g, '+')

@@ -9,15 +9,17 @@
       :items="searchResults">
     </masonry-grid>
     <div class="flex-center">
-      <sliding-pagination
-          :current="options.currentPage"
-          :total="Math.ceil(total / options.limit)"
-          @page-change="pageChangeHandler"
-      ></sliding-pagination>
+      <pagination
+          :records="total"
+          v-model="options.currentPage"
+          :per-page="options.limit"
+          @paginate="pageChangeHandler">
+      </pagination>
     </div>
   </div>
 </template>
 <style>
+@import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css";
 .flex-center{
   display: flex;
   justify-content: center;
@@ -29,8 +31,7 @@ import { mapActions, mapGetters } from 'vuex'
 import Navbar from '../components/Navbar.vue'
 import Spinner from '../components/Spinner.vue'
 import MasonryGrid from '../components/Grid/Grid.vue'
-import SlidingPagination from 'vue-sliding-pagination'
-
+import Pagination from 'vue-pagination-2';
 
 export default {
   name: 'home',
@@ -40,7 +41,7 @@ export default {
     loading: false,
     options:{
       limit: 20,
-      currentPage: 0,
+      currentPage: 1,
       searchTerm: '',
       offset: 1
     }
@@ -51,7 +52,7 @@ export default {
     Spinner,
     Error,
     MasonryGrid,
-    SlidingPagination
+    Pagination
   },
 
   created () {

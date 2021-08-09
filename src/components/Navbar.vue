@@ -7,8 +7,7 @@
           v-model="searchTerm"
           :searchTerm="searchTerm"
           :focusSearch="false"
-          @onSearch="onSearch"
-          @input="onInput">
+          @onSearch="onSearch">
         </search>
 
         <button
@@ -65,9 +64,6 @@ export default {
   },
 
   methods: {
-    onInput() {
-      setTimeout(this.onSearch, 300)
-    },
     onSearch () {
       const searchTerm = this.searchTerm.replace(/\s/g, '+')
       this.$router.push({ name: 'search-results', params: { searchTerm: searchTerm }})

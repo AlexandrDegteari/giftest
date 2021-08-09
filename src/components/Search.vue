@@ -8,7 +8,7 @@
       :value="searchTerm"
       :autofocus="focusSearch"
       @input="onInput($event.target.value)"
-      @keyup.enter="onSearch"
+      @keyup="onSearch(1000)"
       @focus="onFocus"
       @blur="onBlur"
       placeholder="Enter your request"
@@ -24,7 +24,9 @@ export default {
   name: 'search',
 
   data: () => ({
-    isActive: false
+    isActive: false,
+    timeout: null
+
   }),
 
   props: [
@@ -52,8 +54,14 @@ export default {
       this.$emit('input', searchTerm)
     },
 
-    onSearch () {
-      this.$emit('onSearch')
+    onSearch (timeout) {
+      // clear timeout variable
+      clearTimeout(this.timeout);
+
+      let self = this;
+      this.timeout = setTimeout(function () {
+        self.$emit('onSearch')
+      }, timeout);
     },
 
     clickOutside () {
