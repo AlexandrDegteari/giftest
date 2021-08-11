@@ -11,6 +11,8 @@ function fetch (endpoint) {
 
 export default {
 	search (options) {
-	  return fetch(`/gifs/search?q=${options.searchTerm}&limit=${options.limit}&offset=${options.offset}&api_key=${ENV.giphy.apiKey}`)
+		let searchTerm = options.searchTerm.replace(/[^\w\s]/gi, ' ');
+		console.log(searchTerm)
+	  return fetch(`/gifs/search?q=${searchTerm}&limit=${options.limit}&offset=${options.offset}&api_key=${ENV.giphy.apiKey}`)
 	}
 }
